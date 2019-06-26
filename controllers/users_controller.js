@@ -1,5 +1,6 @@
 module.exports.profile=function(req,res){
-    return res.end('<h1>its my profile</h1>');
+    // return res.end('<h1>its my profile</h1>');
+    return res.render('user_profile');
 
 }
 module.exports.profilepic=function(req,res){
