@@ -2,8 +2,11 @@ const express =require('express');
 const port=8000;
 const app=express();
 const expressLayouts=require('express-ejs-layouts');
+//loaded the mongoose file here
+const db=require('./config/mongoose');
 app.use(express.static('assets'));
 app.use(expressLayouts);
+//extraxt style and scripts from subpages into the layout
 app.set('layout extractStyles',true);
 app.set('layout extractScripts',true);
 
