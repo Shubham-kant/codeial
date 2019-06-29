@@ -3,8 +3,8 @@ const router=express.Router();
 
 const usersController=require('../controllers/users_controller');
 
-router.get('/profile',usersController.profile);
-router.get('/profile-pic',usersController.profilepic);
+router.get('/sign-up',usersController.signUp);
+router.get('/sign-in',usersController.signIn);
 router.use('/posts',require('./posts'));
 
 //ye file kahi par import karani padegi isliye yaha se export ki hai

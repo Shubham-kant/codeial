@@ -1,9 +1,14 @@
-module.exports.profile=function(req,res){
-    // return res.end('<h1>its my profile</h1>');
-    return res.render('user_profile');
+module.exports.signUp=function(req,res){
+
+    return res.render('user_sign_up');
 
 }
-module.exports.profilepic=function(req,res){
-// return res.render('<img src="file:///C:/Users/HP/Desktop/desk%20files/desk%20pics/charlie.png">');
-   return res.end('<h1>ddgdg</h1>');
+module.exports.signIn=function(req,res){
+    //just printing the cookies on screen 
+    console.log(req.cookies);
+    //setting up the cookies
+    res.cookie('user_id',25);
+    res.cookie('name','pheobe');
+    return res.render('user_sign_in');
+
 }
