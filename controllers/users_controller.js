@@ -1,6 +1,27 @@
 const User=require('../models/user');
 module.exports.profile=function(req,res){
-    return res.render('user_profile');
+    // if there is cookie named user_id
+    if(req.cookies.user_id){
+        User.findById(req.cookies.user_id,function(err,user){
+            //if user is found
+              if(user){
+                  return res.render('user_profile',{
+                      user:user
+                  });
+
+              }
+              //if user  is not found
+              else{
+                  return res.redirect('/users/sign-in');
+              }
+        });
+    
+    }
+     //if there is not cookie named user_id
+    else{
+        return res.redirect('/users/sign-in');
+    }
+    // return res.render('user_profile');
 }
 module.exports.signUp=function(req,res){
 
@@ -61,7 +82,11 @@ module.exports.createSession=function(req,res){
             }
             //handle session created
             res.cookie('user_id',user.id);
+            console.log('id:',user.id);
+            console.log('_id:',user._id);
+            console.log(user);
             return res.redirect('/users/profile');
+            
 
 
             //password matches
