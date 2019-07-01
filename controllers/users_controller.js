@@ -82,9 +82,9 @@ module.exports.createSession=function(req,res){
             }
             //handle session created
             res.cookie('user_id',user.id);
-            console.log('id:',user.id);
-            console.log('_id:',user._id);
-            console.log(user);
+            // console.log('id:',user.id);
+            // console.log('_id:',user._id);
+            // console.log(user);
             return res.redirect('/users/profile');
             
 
@@ -100,4 +100,9 @@ module.exports.createSession=function(req,res){
 
     });
 
+}
+module.exports.deleteSession=function(req,res){
+   
+     res.cookie('user_id',"");
+     return res.redirect('sign-in');
 }
