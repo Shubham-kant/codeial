@@ -20,7 +20,7 @@ passport.use(new LocalStrategy({
                 console.log('invalid Username/Password');
                 return done(null,false);
             }
-            console.log(user);
+            // console.log(user);
             return done(null,user);
         });
 
@@ -32,7 +32,7 @@ passport.serializeUser(function(user,done){
 });
 //deserialing the user  from the key in cookies
 passport.deserializeUser(function(id,done){
-    User.findById(id,function(err,done){
+    User.findById(id,function(err,user){
         if(err){
             console.log('error in finding user --> passport ');
             return done(err);
