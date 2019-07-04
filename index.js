@@ -12,6 +12,23 @@ const passportLocal=require('./config/passport-local-strategy');
 //importing connect-mongo module and specifically a arguement named 'session'. 
 const MongoStore=require('connect-mongo')(session);
 
+//importing node-sass-middleware
+const sassMiddleware=require('node-sass-middleware');
+//telling app to use it
+app.use(sassMiddleware({
+    /*
+    src - Source directory used to find .scss or .sass files.
+    dest - Destination directory used to output .css files. 
+    */ 
+   src:'assets/scss',
+   dest:'/assets/css',
+   debug:true,
+   outputStyle:'extended',
+   prefix:'/css'
+
+}));
+
+
 
 app.use(express.urlencoded());
 app.use(cookieParser());
@@ -33,6 +50,7 @@ app.use(session({
     saveUninitialized:false,
     resave:false,
     cookie:{
+        //session set for 100 minutes
         maxAge:(1000*60*100)
     },
     //we are using here MongoStore instance
