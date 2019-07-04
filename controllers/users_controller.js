@@ -55,3 +55,12 @@ module.exports.create=function(req,res){
 module.exports.createSession=function(req,res){
     return res.redirect('/');
 }
+module.exports.destroySession=function(req,res){
+    /*Passport exposes a logout() function on req that can be called from any 
+    route handler which needs to terminate a login session.
+    Invoking logout() will remove the req.user property and clear the login session 
+    */ 
+    req.logout();
+    //then redirecting to home page.
+    return res.redirect('/');
+}
