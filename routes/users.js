@@ -4,7 +4,8 @@ const passport = require('passport');
 
 const usersController=require('../controllers/users_controller');
 
-
+//now profile page cant be accessed without proper sign in 
+//this is because of  middleware added in this route
 router.get('/profile',passport.checkAuthentication,usersController.profile)
 router.get('/sign-up',usersController.signUp);
 router.get('/sign-in',usersController.signIn);

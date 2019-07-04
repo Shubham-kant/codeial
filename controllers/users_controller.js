@@ -5,6 +5,7 @@ module.exports.profile = function(req, res){
     })
 }
 module.exports.signUp=function(req,res){
+    //now if user is signed in now user cant go sign up page 
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
@@ -12,7 +13,9 @@ module.exports.signUp=function(req,res){
     return res.render('user_sign_up');
 
 }
+
 module.exports.signIn=function(req,res){
+    //now if user is signed in now user cant go sign in page 
     if(req.isAuthenticated()){
         return res.redirect('/users/profile');
     }
