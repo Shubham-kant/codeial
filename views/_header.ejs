@@ -1,4 +1,8 @@
-<header>
+<header id="header">
+    <div id="app-name">
+        <span>CODEIAL</span>
+    </div>
+    <div id="sign-links">
     <% if(locals.user){  %>
         <a href="/users/profile">
             <%= user.name%>
@@ -17,4 +21,5 @@
         </a>
 
     <% } %>
+    </div>
 </header>

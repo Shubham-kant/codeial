@@ -2,13 +2,18 @@
     <head>
             
         <link rel="stylesheet" href="/css/layout.css">
+        <link rel="stylesheet" href="/css/header.css">
+        <link rel="stylesheet" href="/css/footer.css">
         <!-- extracting here the css part  of sub page -->
         <%- style %>
     
     </head>
     <body>
         <%- include('_header'); %>
-        <%- body %>
+        <main id="layout-main">
+            <%- body %>
+        </main>
+        
         <%- include('_footer'); %>
          
          <!-- extracting here the js part  of sub page -->

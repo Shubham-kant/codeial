@@ -1,0 +1,13 @@
+#footer{
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+
+    background-color: slategray;
+    #footer-content{
+        margin-top: 0.5rem;
+        color: white;
+        font-family: sans-serif;
+    }
+ 
+}

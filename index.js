@@ -20,8 +20,8 @@ app.use(sassMiddleware({
     src - Source directory used to find .scss or .sass files.
     dest - Destination directory used to output .css files. 
     */ 
-   src:'assets/scss',
-   dest:'/assets/css',
+   src:'./assets/scss',
+   dest:'./assets/css',
    debug:true,
    outputStyle:'extended',
    prefix:'/css'
