@@ -3,7 +3,7 @@ const router=express.Router();
 
 const postsController=require('../controllers/posts_controller');
 
-router.get('/likes',postsController.like);
+router.post('/create',postsController.create);
 
 
 
