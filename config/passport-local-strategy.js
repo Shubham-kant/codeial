@@ -59,6 +59,7 @@ passport.setAuthenticatedUser=function(req,res,next){
         from the session cookie and we are just sending 
         this to the locals for the views*/
        res.locals.user=req.user;
+    //    console.log(req);
     
     }
     //to run the next process

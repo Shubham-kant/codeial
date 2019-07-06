@@ -28,4 +28,22 @@
 
 
  </form>
+ <div id="posts-list-container">
+     <ul>
+ <% for(var i of posts ){ %>
+        <li>
+            <!-- here user is the field in post schema and 
+            name is one of its property.  -->
+            <p><%= i.user.name %></p>
+            <p><%= i.content %></p>
+            
+        </li>
+
+
+
+
+
+<% }  %>
+     </ul>
+ </div>
  </section>
