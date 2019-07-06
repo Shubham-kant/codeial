@@ -11,8 +11,10 @@ module.exports.home=function(req,res){
    //        posts:posts
    //     });
    // })
+   
    //here user is the field in post schema 
    //we have populated the user field
+   //populate the post of each user
    Post.find({}).populate('user').exec(function(err,posts){
         if(err){
            console.log('error in finding the posts');

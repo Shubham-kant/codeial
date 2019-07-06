@@ -1,9 +1,11 @@
 const express=require('express');
 const router=express.Router();
-
+const passport=require('passport');
 const postsController=require('../controllers/posts_controller');
 
-router.post('/create',postsController.create);
+
+//this middleware is added for authentication purpose
+router.post('/create',passport.checkAuthentication,postsController.create);
 
 
 
