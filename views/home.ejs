@@ -41,6 +41,20 @@
             <p><%= i.user.name %></p>
             <!-- <p><%= i.user.createdAt %></p> -->
             <p><%= i.content %></p>
+            <div id="post-comments">
+                <!-- if condition is added for authentication purpose -->
+                <% if(locals.user){ %>
+
+                <form action="/comments/create" method="POST">
+                    <input type="text" name="content" placeholder="Type here to add a comment...">
+                    <!--  sending the id of the post below which comment needs to be added -->
+                    <input type="hidden" name="post" value="<%= i._id %>">
+                    <input type="submit" value="Add Comment">
+
+                </form>
+
+                <% } %>
+            </div>
             
         </li>
 
