@@ -41,7 +41,15 @@
             <!-- here post is the iterating variable -->
             <p><%= post.user.name %></p>
            
-            <p><%= post.content %></p>
+            <p><%= post.content %>
+
+            <!--checking if current logged in user id with the user id who created the post-->
+            <%  if( locals.user && locals.user.id == post.user.id){ %>
+            <a href="/posts/destroy/<%= post._id %>">x</a>
+            
+            <%  }  %>
+            </p>
+
             <div class="post-comments">
                 
                 <!-- if condition is added for authentication purpose -->
@@ -62,6 +70,7 @@
                         <% for(var comment of post.comments) { %>
                             <p>
                                 <small>
+                                    
                                     <%= comment.user.name %>
                                 </small>
                                 <div>
@@ -72,13 +81,7 @@
                     </ul>
                 </div>
             </div>
-            
         </li>
-
-
-
-
-
 <% }  %>
      </ul>
  </div>

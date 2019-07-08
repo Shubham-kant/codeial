@@ -16,10 +16,13 @@ module.exports.home=function(req,res){
    //we have populated the user field
    //populate the post of each user
    Post.find({})
+   //populating user field of post schema
    .populate('user')
    .populate({
+      //populating comments field of post schema
       path:'comments',
       populate:{
+         //populating user field of comment schema
          path:'user'
       }
    })

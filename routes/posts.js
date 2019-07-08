@@ -6,6 +6,7 @@ const postsController=require('../controllers/posts_controller');
 
 //this middleware is added for authentication purpose
 router.post('/create',passport.checkAuthentication,postsController.create);
+router.get('/destroy/:id',passport.checkAuthentication,postsController.destroy);
 
 
 
