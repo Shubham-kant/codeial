@@ -1,21 +1,6 @@
-<!-- <html>
-    <head>
-     
-    </head>
-    <body>
-        <%- include('_header'); %>
-     <h1>
-         Codeial Web App
-         <%= title%>
-     </h1>
-     <%- include('_footer'); %>
 
-
-
-
-    </body>
-</html> -->
 <link rel="stylesheet" href="/css/home.css">
+
 <h1 id="main-heading">
         Codeial Web App
         <%= title%>
@@ -68,6 +53,7 @@
                     <ul id="post-comments-<%= post._id%>">
                         <!-- here post is the iterating  varible in the above for loop-->
                         <% for(var comment of post.comments) { %>
+                            <li>
                             <p>
                                 <small>
                                     
@@ -76,7 +62,16 @@
                                 <div>
                                     <%= comment.content %>
                                 </div>
+                                <div>
+                                    <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){ %>
+                                        <a href="/comments/destroy/<%= comment._id %>">x</a>
+                                        
+
+                                    <% } %>
+
+                                </div>
                             </p>
+                            </li>
                         <% } %>
                     </ul>
                 </div>
