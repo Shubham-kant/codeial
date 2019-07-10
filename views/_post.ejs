@@ -1,3 +1,5 @@
+<!-- it is a partial  -->
+<!--  the code for posts will be here -->
 <li>
     <!-- here user is the field in post schema and 
     name is one of its property.  -->
@@ -29,8 +31,9 @@
         <% } %>
         <div class="post-comments-list">
             <ul id="post-comments-<%= post._id%>">
-                <!-- here post is the iterating  varible in the above for loop-->
+                <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->
                 <% for( comment of post.comments) { %>
+                    <!-- using parials  here -->
                     <%- include('_comment'); %>
                 <% } %>
             </ul>

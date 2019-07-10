@@ -4,8 +4,8 @@
     </div>
     <div id="sign-links">
     <% if(locals.user){  %>
-        <a href="/users/profile">
-            <%= user.name%>
+        <a href="/users/profile/<%= user.id%>">
+            <%= user.name %>
         </a>   
         <a href="/users/sign-out">
            Sign out

@@ -20,9 +20,23 @@
  <div id="posts-list-container">
      <ul>
  <% for( post of posts ){ %>
-
+    <!-- using parials  here -->
     <%- include('_post'); %>
 <% }  %>
      </ul>
  </div>
+ </section>
+ <section id="user-friends">
+   <h4>Friends</h4>
+   <% for(u of all_users){ %>
+    <a href="/users/profile/<%= u._id%>">
+         <!--displaying all the users  -->
+        <div>
+            <%= u.name%>
+        </div>
+   
+    </a>
+
+
+   <% } %>
  </section>

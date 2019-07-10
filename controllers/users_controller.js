@@ -1,8 +1,15 @@
 const User=require('../models/user');
 module.exports.profile = function(req, res){
-    return res.render('user_profile', {
-        title: 'User Profile'
-    })
+    //finding the user's profile by id
+    User.findById(req.params.id,function(err,user){
+        return res.render('user_profile', {
+            title: 'User Profile',
+            profile_user:user
+
+        });
+    });
+    
+  
 }
 module.exports.signUp=function(req,res){
     //now if user is signed in now user cant go sign up page 
