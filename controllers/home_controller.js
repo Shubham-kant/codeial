@@ -1,7 +1,9 @@
 const Post=require('../models/post');
 const User=require('../models/user');
 //module.exports.action_name= function(req,res){}
-module.exports.home=function(req,res){
+module.exports.home=async function(req,res){
+   
+
    // Post.find({},function(err,posts){
    //     if(err){
    //        console.log('error in finding the posts');
@@ -12,39 +14,33 @@ module.exports.home=function(req,res){
    //        posts:posts
    //     });
    // })
-   
-   //here user is the field in post schema 
-   //we have populated the user field
+   try{
    //populate the post of each user
-   Post.find({})
+      let posts=await Post.find({})
    //populating user field of post schema
-   .populate('user')
-   .populate({
+      .populate('user')
+      .populate({
       //populating comments field of post schema
-      path:'comments',
-      populate:{
+         path:'comments',
+         populate:{
          //populating user field of comment schema
-         path:'user'
-      }
-   })
-   .exec(function(err,posts){
-        if(err){
-           console.log('error in finding the posts');
-           return;
-        }
+            path:'user'
+         }
+      });
         //finding all the users to show them on screen
-        User.find({},function(err,users){
+        //successful response of User.find() will be stored in 'users' variable
+      let users=await User.find({});
+         
          return res.render('home',{
-            title:'home',
-            posts:posts,
-            all_users:users
+         title:'home',
+         posts:posts,
+         all_users:users
 
-        });
-        
-        });
-
-
-
-   })
- 
+      }); 
+   }
+   catch(err){
+      console.log('Error',err);
+      return;
+   }
 }
+
