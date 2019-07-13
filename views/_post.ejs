@@ -1,6 +1,6 @@
 <!-- it is a partial  -->
 <!--  the code for posts will be here -->
-<li>
+<li id="post-<%= post._id %>">
     <!-- here user is the field in post schema and 
     name is one of its property.  -->
     <!-- here post is the iterating variable -->
@@ -10,7 +10,7 @@
 
     <!--checking if current logged in user id with the user id who created the post-->
     <%  if( locals.user && locals.user.id == post.user.id){ %>
-    <a href="/posts/destroy/<%= post._id %>">x</a>
+    <a class="delete-post-button" href="/posts/destroy/<%= post._id %>">x</a>
     
     <%  }  %>
     </p>
