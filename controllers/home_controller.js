@@ -17,6 +17,7 @@ module.exports.home=async function(req,res){
    try{
    //populate the post of each user
       let posts=await Post.find({})
+      .sort('-createdAt')
    //populating user field of post schema
       .populate('user')
       .populate({

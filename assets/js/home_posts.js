@@ -16,6 +16,10 @@
                     let newPost=newPostDom(data.data.post);
                     //new post will come at the top now.. i.e prepend
                     $('#posts-list-container>ul').prepend(newPost);
+                    /*passing the 'a' tag having class 'delete-post-button' from 
+                    newpost function.
+                    passing this 'a' tag to deletePost function*/
+                    deletePost($(' .delete-post-button', newPost));
 
                 },error:function(error){
                     /*read-only XMLHttpRequest property responseText returns
@@ -65,6 +69,31 @@
                 </div>
             </div>
         </li>`)
+    
+    }
+        
+
+
+    // method to delete a post from DOM
+    //deleteLink contains 'a' tag 
+    let deletePost = function(deleteLink){
+        $(deleteLink).click(function(e){
+            e.preventDefault();
+
+            $.ajax({
+                type: 'get',
+                //grabs the link in href attribute from 'a' tag..
+                url: $(deleteLink).prop('href'),
+                success: function(data){
+                    //deleting whole post 
+                    $(`#post-${data.data.post_id}`).remove();
+
+                },error: function(error){
+                    console.log(error.responseText);
+                }
+            });
+
+        });
     }
     createPost();
 }
