@@ -13,13 +13,27 @@ module.exports.create=async function(req,res){
               post:req.body.post,
               user:req.user._id
            });
+           
                
                //pushing the comment in the field 'comments' of post
                //added comment to the post.
                post.comments.push(comment);
                //saving 
                post.save();
-               req.flash('success','Comment added');
+              
+
+            if (req.xhr){
+                // Similar for comments to fetch the user's id!
+                comment = await comment.populate('user', 'name').execPopulate();
+    
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: "Comment created!"
+                });
+            }
+               req.flash('success','Comment Added!');
                return res.redirect('/');
        }
     }
@@ -38,10 +52,22 @@ module.exports.destroy=async function(req,res){
             let postId=comment.post;
             let post=await Post.findById(postId);
                 let userId=post.user;
-                if(post.user==req.user.id||comment.user == req.user.id){
+                 if((post.user==req.user.id)||(comment.user == req.user.id)){
+              
                     comment.remove(); 
                     let postId=comment.post;
                     let post=await Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}});
+                    // send the comment id which was deleted back to the views
+                    if(req.xhr){
+                        return res.status(200).json({
+                            data:{
+                                comment_id : req.params.id
+                            },
+                            message:'Comment Deleted!'
+
+                        });
+
+                    }
                     req.flash('success','Comment deleted!');
                         return res.redirect('back');           
                 }

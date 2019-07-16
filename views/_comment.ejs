@@ -1,6 +1,6 @@
 <!--  the code for comments will be here -->
 <!-- it is a partial  -->
-<li>
+<li id="comment-<%= comment._id %>">
     <p>
         <small>
             
@@ -11,7 +11,7 @@
         </div>
         <div>
             <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){ %>
-                <a href="/comments/destroy/<%= comment._id %>">x</a>
+                <a class="delete-comment-button" href="/comments/destroy/<%= comment._id %>">x</a>
                 
 
             <% } %>

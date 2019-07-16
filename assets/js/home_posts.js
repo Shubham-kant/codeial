@@ -20,6 +20,16 @@
                     newpost function.
                     passing this 'a' tag to deletePost function*/
                     deletePost($(' .delete-post-button', newPost));
+                    new Noty({
+
+                        theme:'relax',
+                        type:'success',
+                        text:'Post Added!!!',
+                        layout:'topRight',
+                        timeout:1500
+
+
+                    }).show();
 
                 },error:function(error){
                     /*read-only XMLHttpRequest property responseText returns
@@ -71,6 +81,13 @@
         </li>`)
     
     }
+    // method to iterate over all post  delete button
+    let iterate_post=function(){
+        var loop=$(' .delete-post-button');
+        for(i of loop){
+            deletePost(i);
+        }
+    }
         
 
 
@@ -87,6 +104,16 @@
                 success: function(data){
                     //deleting whole post 
                     $(`#post-${data.data.post_id}`).remove();
+                    new Noty({
+
+                        theme:'relax',
+                        type:'success',
+                        text:'Post Deleted!!!',
+                        layout:'topRight',
+                        timeout:1500
+
+
+                    }).show();
 
                 },error: function(error){
                     console.log(error.responseText);
@@ -96,4 +123,5 @@
         });
     }
     createPost();
+    iterate_post();
 }
