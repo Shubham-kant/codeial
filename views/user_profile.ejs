@@ -1,8 +1,6 @@
 
 <link rel="stylesheet" href="/css/user_profile.css">
-<h1>
-        Codeial/profile
-    </h1>
+<img src="<%= user.avatar %>" alt="<%= user.name %>" width="200" height="200">
       <!-- locals.user contains current logged in user  -->
      <!-- user is here accessible bcoz of user.locals.user=req.user -->
     <%  if(user.id==profile_user.id){  %>
