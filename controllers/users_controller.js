@@ -1,4 +1,6 @@
 const User=require('../models/user');
+const fs=require('fs');
+const path=require('path');
 module.exports.profile = function(req, res){
     //finding the user's profile by id
     User.findById(req.params.id,function(err,user){
@@ -30,13 +32,20 @@ module.exports.update= async function(req,res){
                 user.name=req.body.name;
                 user.email=req.body.email;
                 if(req.file){
+                    //checking if user already has a avatar  
+                    if(user.avatar){
+                        //if the file of that avatar exists
+                        if(fs.existsSync(path.join(__dirname,"..",user.avatar))){
+                            fs.unlinkSync(path.join(__dirname,"..",user.avatar));
+                        }
+                    }
                     //saving the path of uploaded file in avatar field of user
                     user.avatar=User.avatarPath + '/' + req.file.filename;
                 }
                 //saving user
                 user.save();
                 req.flash('success','Updated Successfully!!');
-                return res.redirect('back');
+                return res.redirect('/');
             });
         }
         catch(err){
