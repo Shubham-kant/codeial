@@ -11,21 +11,45 @@ module.exports.profile = function(req, res){
     
   
 }
-module.exports.update=function(req,res){
+module.exports.update= async function(req,res){
     if(req.user.id==req.params.id){
-        // User.findByIdAndUpdate(req.params,id,{name:req.body.name,email:req.body.email},function(err,user){
-
+        // User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
+        //     return res.redirect('/');
         // });
-        User.findByIdAndUpdate(req.params.id,req.body,function(err,user){
-            req.flash('success','Updated Successfully!!');
-            return res.redirect('/');
-        });
-    }else{
+        try{
+            let user=await User.findById(req.params.id);
+            User.uploadedAvatar(req,res,function(err){
+                if(err){
+                    console.log('********Multer error',err);
+                    // return ;
+                }
+                // console.log(req.file);
+                //Multer adds a body object and file object to the request object. 
+                //body object contains the values of the text fields of the form.
+                //file object contains the files uploaded via the form.
+                user.name=req.body.name;
+                user.email=req.body.email;
+                if(req.file){
+                    //saving the path of uploaded file in avatar field of user
+                    user.avatar=User.avatarPath + '/' + req.file.filename;
+                }
+                //saving user
+                user.save();
+                req.flash('success','Updated Successfully!!');
+                return res.redirect('back');
+            });
+        }
+        catch(err){
+            req.flash('error',err);
+            return res.redirect('back');
+
+        }
+    }
+    else{
         req.flash('error','Unauthorized');
-        return res.status(401).send('Unauthorised');
+        return res.status(401).send('Unauthorized');
     }
 }
-
 module.exports.signUp=function(req,res){
     //now if user is signed in now user cant go sign up page 
     if(req.isAuthenticated()){
