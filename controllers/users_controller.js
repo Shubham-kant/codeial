@@ -36,6 +36,7 @@ module.exports.update= async function(req,res){
                     if(user.avatar){
                         //if the file of that avatar exists
                         if(fs.existsSync(path.join(__dirname,"..",user.avatar))){
+                            //deleting the file (old avatar)
                             fs.unlinkSync(path.join(__dirname,"..",user.avatar));
                         }
                     }
