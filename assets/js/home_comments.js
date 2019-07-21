@@ -12,6 +12,7 @@
                     console.log(data);
                     let newComment=newCommentDom(data.data.comment);
                     $(' .post-comments-list>ul').prepend(newComment);
+                    iterate_comment();
                     deleteComment($(' .delete-comment-button', newComment));
                     new Noty({
 
