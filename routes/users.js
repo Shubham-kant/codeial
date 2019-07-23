@@ -20,6 +20,12 @@ router.post('/create-session',passport.authenticate(
         failureRedirect:'/users/sign-in'
     },
 ) ,usersController.createSession);
+//sending request to google for user's info
+router.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+//this is callback url where google send the info
+router.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/users/sign-in'}), usersController.createSession);
 
-//ye file kahi par import karani padegi isliye yaha se export ki hai
+
+
+//this file will be need to import somewhere thats why exported from here
 module.exports=router;

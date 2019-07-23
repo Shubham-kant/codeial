@@ -10,6 +10,7 @@ const session=require('express-session');
 const passport=require('passport');
 const passportLocal=require('./config/passport-local-strategy');
 const passportJWT = require('./config/passport-jwt-strategy');
+const passportGoogle=require('./config/passport-google-oauth2-strategy');
 //importing connect-mongo module and specifically a arguement named 'session'. 
 const MongoStore=require('connect-mongo')(session);
 
