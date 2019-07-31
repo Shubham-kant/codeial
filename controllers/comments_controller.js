@@ -1,5 +1,6 @@
 const Comment=require('../models/comment');
 const Post=require('../models/post');
+const Like=require('../models/like');
 // const commentsMailer = require('../mailers/comments_mailer');
 const queue=require('../config/kue');
 //calling thw worker file
@@ -39,6 +40,7 @@ module.exports.create=async function(req,res){
             if (req.xhr){
                 // Similar for comments to fetch the user's id!
                 
+                
     
                 return res.status(200).json({
                     data: {
@@ -67,7 +69,9 @@ module.exports.destroy=async function(req,res){
             let post=await Post.findById(postId);
                 let userId=post.user;
                  if((post.user==req.user.id)||(comment.user == req.user.id)){
-              
+                    //deleting likes before deleting comments 
+                    await Like.deleteMany({likeable:comment,onModel:'Comment'});
+                    
                     comment.remove(); 
                     let postId=comment.post;
                     let post=await Post.findByIdAndUpdate(postId,{$pull:{comments:req.params.id}});

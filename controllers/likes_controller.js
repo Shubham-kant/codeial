@@ -8,15 +8,15 @@ module.exports.toggleLike=async function(req,res){
         let deleted=false;
         // /likes/toggle/?id=abcde&type=Post
         if(req.query.type=='Post'){
-            likeable=await Post.findById(req.body.id).populate('likes');
+            likeable=await Post.findById(req.query.id).populate('likes');
         }
         // /likes/toggle/?id=abcde&type=Comment
         else{
-            likeable=await Comment.findById(req.body.id).populate('likes');
+            likeable=await Comment.findById(req.query.id).populate('likes');
         }
         //check if a like already exists
         let existingLike=await Like.findOne({
-            user:req.user._id,
+            user:req.user.id,
             likeable:req.query.id,
             onModel:req.query.type
 
@@ -45,7 +45,8 @@ module.exports.toggleLike=async function(req,res){
         return res.json(200,{
             data:{
                 deleted:deleted
-            }
+            },
+            message:'request successful'
         });
 
     }

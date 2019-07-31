@@ -20,6 +20,7 @@
                     newpost function.
                     passing this 'a' tag to deletePost function*/
                     deletePost($(' .delete-post-button', newPost));
+                    newLike($(' .toggle-like-button',newPost));
                     new Noty({
 
                         theme:'relax',
@@ -50,6 +51,14 @@
             <p>${ post.user.name }</p>
            
             <p>${ post.content }
+            
+            <small>
+                            
+            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+                0 Likes
+            </a>
+        
+    </small>
         
             <!--checking if current logged in user id with the user id who created the post-->
 
@@ -122,6 +131,43 @@
 
         });
     }
+    let newLike=function(likeLink){
+        $(likeLink).click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'post',
+                url:$(likeLink).prop('href'),
+                success:function(data){
+                    //parseInt() is used to convert string into int.
+                    let likeCount=parseInt($(likeLink).attr('data-likes'));
+                    console.log(likeCount);
+                    console.log(data);
+                    if(data.data.deleted==true){
+                        likeCount-=1;
+                    }
+                    else{
+                        likeCount+=1;
+                    }
+                    console.log(likeCount);
+                    $(likeLink).attr('data-likes',likeCount);
+                    $(likeLink).html(`${likeCount} likes`);
+
+
+
+                },error:function(err){
+                    console.log(err.responseText);
+
+                }
+            });
+        });
+    }
+    let iterate_Likes=function(){
+        let loop=$(' .toggle-like-button');
+        for(i of loop){
+            newLike(i);
+        }
+    }
     createPost();
     iterate_post();
+    iterate_Likes();
 }

@@ -9,11 +9,13 @@
                 url:'/comments/create',
                 data:newCommentForm.serialize(),
                 success:function(data){
-                    console.log(data);
+                    // console.log(data);
                     let newComment=newCommentDom(data.data.comment);
                     $(' .post-comments-list>ul').prepend(newComment);
+                    newLike($(' .toggle-like-button',newComment));
                     iterate_comment();
                     deleteComment($(' .delete-comment-button', newComment));
+                    // newLike($(' .toggle-like-button',newComment));
                     new Noty({
 
                         theme:'relax',
@@ -41,6 +43,14 @@
                 <div>
                 ${ comment.content }
                 </div>
+                
+                <small>
+                            
+                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${ comment._id }&type=Comment">
+                    0 Likes
+                </a>
+            
+            </small>
                 <div>
                     
                 <a class="delete-comment-button" href="/comments/destroy/${ comment._id }">x</a>
@@ -52,7 +62,7 @@
     //method to delete any comment 
     // method to iterate over all post  delete button
     let iterate_comment=function(){
-        var loop=$('.delete-comment-button');
+        let loop=$('.delete-comment-button');
         for(i of loop ){
             deleteComment(i);
         }
@@ -81,6 +91,35 @@
                     }).show();
                 },error:function(error){
                     console.log(error.responseText);
+                }
+            });
+        });
+    }
+    let newLike=function(likeLink){
+        $(likeLink).click(function(e){
+            e.preventDefault();
+            $.ajax({
+                type:'post',
+                url:$(likeLink).prop('href'),
+                
+                success:function(data){
+                    //parseInt() is used to convert string into int.
+                    let likeCount=parseInt($(likeLink).attr('data-likes'));
+                    console.log(likeCount);
+                    console.log(data);
+                    if(data.data.deleted==true){
+                        likeCount-=1;
+                    }
+                    else{
+                        likeCount+=1;
+                    }
+                    console.log(likeCount);
+                    $(likeLink).attr('data-likes',likeCount);
+                    $(likeLink).html(`${likeCount} likes`);
+
+                },error:function(err){
+                    console.log(err.responseText);
+
                 }
             });
         });

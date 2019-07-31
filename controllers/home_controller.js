@@ -1,5 +1,6 @@
 const Post=require('../models/post');
 const User=require('../models/user');
+
 //module.exports.action_name= function(req,res){}
 module.exports.home=async function(req,res){
    
@@ -15,6 +16,8 @@ module.exports.home=async function(req,res){
    //     });
    // })
    try{
+      
+   // CHANGE :: populate the likes of each post and comment
    //populate the post of each user
       let posts=await Post.find({})
       .sort('-createdAt')
@@ -26,8 +29,12 @@ module.exports.home=async function(req,res){
          populate:{
          //populating user field of comment schema
             path:'user'
+         },
+         populate:{
+            path:'likes'
          }
-      });
+      })
+      .populate('likes');
         //finding all the users to show them on screen
         //successful response of User.find() will be stored in 'users' variable
       let users=await User.find({});
