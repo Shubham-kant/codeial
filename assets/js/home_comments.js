@@ -1,6 +1,9 @@
 {
     let createComment=function(){
-        let newCommentForm=$('#new-comment-form');
+        let newCommentForm=$(`#post-${ post._id }-comments-form`);
+    
+        console.log(newCommentForm);
+
         newCommentForm.submit(function(e){
             e.preventDefault();
 
@@ -15,6 +18,8 @@
                     newLike($(' .toggle-like-button',newComment));
                     iterate_comment();
                     deleteComment($(' .delete-comment-button', newComment));
+                    
+                    // new ToggleLike($(' .toggle-like-button', newComment));
                     // newLike($(' .toggle-like-button',newComment));
                     new Noty({
 
@@ -46,7 +51,7 @@
                 
                 <small>
                             
-                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${ comment._id }&type=Comment">
+                <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${comment._id}&type=Comment">
                     0 Likes
                 </a>
             
@@ -125,9 +130,18 @@
         });
     }
 
-
+    
     createComment();
+    
+    $('.new-comment-form').each(function(){
+        let self = this;
+        console.log('this means:',self);
+        createComment(self);
+    });
+
+
 
     iterate_comment();
     
 }
+

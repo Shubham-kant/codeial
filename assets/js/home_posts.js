@@ -21,6 +21,8 @@
                     passing this 'a' tag to deletePost function*/
                     deletePost($(' .delete-post-button', newPost));
                     newLike($(' .toggle-like-button',newPost));
+                    
+                    
                     new Noty({
 
                         theme:'relax',
@@ -71,7 +73,7 @@
              
          
         
-                <form action="/comments/create" method="POST">
+                <form action="/comments/create" id="post-<%= post._id %>-comments-form" method="POST">
                     <input type="text" name="content" placeholder="Type here to add a comment..." required>
                        <!-- sending the id of the post below which comment needs to be added -->
                         <input type="hidden" name="post" value="${ post._id }">
