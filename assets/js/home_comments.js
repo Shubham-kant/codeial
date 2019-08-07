@@ -1,6 +1,6 @@
 {
     let createComment=function(){
-        let newCommentForm=$(`#post-${ post._id }-comments-form`);
+        let newCommentForm=$(`#post-${post._id}-comments-form`);
     
         console.log(newCommentForm);
 
@@ -133,11 +133,11 @@
     
     createComment();
     
-    $('.new-comment-form').each(function(){
-        let self = this;
-        console.log('this means:',self);
-        createComment(self);
-    });
+    // $('.new-comment-form').each(function(){
+    //     let self = this;
+    //     console.log('this means:',self);
+    //     createComment(self);
+    // });
 
 
 
