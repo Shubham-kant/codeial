@@ -1,6 +1,7 @@
 const Post=require('../models/post');
 const User=require('../models/user');
 
+
 //module.exports.action_name= function(req,res){}
 module.exports.home=async function(req,res){
    
