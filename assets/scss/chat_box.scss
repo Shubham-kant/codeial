@@ -9,6 +9,9 @@
     background-color: white;
     padding: 5px;
     box-shadow: 1px 1px 2px 1px grey;
+    #feedback{
+        font-size:15px;
+    }
     #chat-messages-list{
         list-style: none;
         height: 70%;
@@ -26,6 +29,9 @@
                 background-color:lightblue;
 
             }
+            sub{
+                font-size:15px;
+            }
 
         }
         .self-message{
@@ -37,6 +43,9 @@
                 border:1px solid grey;
                 background-color: lightgreen;
 
+            }
+            sub{
+                font-size:15px;
             }
         }
 
