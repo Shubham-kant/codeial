@@ -20,19 +20,49 @@ class chatEngine{
         this.socket.on('connect',function(){
             console.log('connection established using sockets');
         });
+
+
         self.socket.emit('join_room',{
             user_email:self.userEmail,
             chatroom:'codeial'
 
         });
+
+
         self.socket.on('user_joined',function(data){
             console.log('a user joined',data);
         });
+
+        // CHANGE :: send a message on pressing the enter key
+        $('#chat-message-input').on('keypress',function(e){
+            console.log(e.which);
+            //ascii code of enter key is 13
+            if(e.which===13 ){
+                
+                let msg = $('#chat-message-input').val();
+
+                //automatic scroll down as user sends a new msg 
+                $("#chat-messages-list").stop().animate({ scrollTop: $("#chat-messages-list")[0].scrollHeight}, 200);
+    
+                if (msg != ''){
+                   
+                    $('#chat-message-input').val('');
+                    self.socket.emit('send_message', {
+                        message: msg,
+                        user_email: self.userEmail,
+                        chatroom: 'codeial'
+                    });
+                   
+                    
+                }
+
+            }
+        })
         // CHANGE :: send a message on clicking the send message button
         
         $('#send-message').click(function(){
             let msg = $('#chat-message-input').val();
-            //added for automatic bottom scroll as new message arrives..
+            //automatic scroll down as user sends a new msg 
             $("#chat-messages-list").stop().animate({ scrollTop: $("#chat-messages-list")[0].scrollHeight}, 200);
 
             if (msg != ''){
@@ -42,10 +72,9 @@ class chatEngine{
                     user_email: self.userEmail,
                     chatroom: 'codeial'
                 });
-               
-                
             }
         });
+
         //sending request for broadcasting if a user presses any key during chat
         $('#chat-message-input').on('keypress',function(){
             self.socket.emit('typing',{
@@ -53,16 +82,28 @@ class chatEngine{
             });
 
         });
+
         //receiving request of broadcasting msg ie 'user is typing' to other users 
         self.socket.on('typing',function(data){
             console.log('data is',data.user_email);
-            $('#feedback').html(data.user_email+'<i>is typing a message<i>')
+            $('#feedback').html(data.user_email+'<i> is typing...<i>')
         });
+        
+        //receiving request of stop broadcasting msg ie 'user is typing' to other users 
+        self.socket.on('stop_typing',function(data){
+            $('#feedback').html('')
+        });
+        
         //receiving the receieve_message request
         self.socket.on('receive_message',function(data){
             console.log('message recieved ',data.message);
 
-            $('#feedback').html('');
+            //sending request for broadcasting nothing if a user has send the msg.
+            self.socket.emit('stop_typing',{
+                user_email:self.userEmail
+            });
+            //automatic scroll down as new msg arrives
+            $("#chat-messages-list").stop().animate({ scrollTop: $("#chat-messages-list")[0].scrollHeight}, 200);
             
 
             let newMessage=$('<li>');
