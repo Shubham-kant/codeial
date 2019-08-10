@@ -32,7 +32,8 @@ class chatEngine{
         
         $('#send-message').click(function(){
             let msg = $('#chat-message-input').val();
-            // $("#user-chat-box").stop().animate({ scrollTop: $("#user-chat-box")[0].scrollHeight}, 1000);
+            //added for automatic bottom scroll as new message arrives..
+            $("#chat-messages-list").stop().animate({ scrollTop: $("#chat-messages-list")[0].scrollHeight}, 200);
 
             if (msg != ''){
                 $('#chat-message-input').val('');
@@ -52,7 +53,7 @@ class chatEngine{
             });
 
         });
-        //receiving request of broadcasting msg to other users 
+        //receiving request of broadcasting msg ie 'user is typing' to other users 
         self.socket.on('typing',function(data){
             console.log('data is',data.user_email);
             $('#feedback').html(data.user_email+'<i>is typing a message<i>')

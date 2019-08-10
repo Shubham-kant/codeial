@@ -36,6 +36,8 @@
         background-color: lightgreen; }
       #user-chat-box #chat-messages-list .self-message sub {
         font-size: 15px; }
+  #user-chat-box #chat-messages-list::-webkit-scrollbar {
+    display: none; }
   #user-chat-box #chat-message-input-container {
     height: 24%;
     width: 100%;
