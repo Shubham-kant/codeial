@@ -1,4 +1,5 @@
 const express =require('express');
+const env=require('./config/environment');
 const cookieParser=require('cookie-parser');
 const port=8000;
 const app=express();
@@ -26,27 +27,27 @@ const chatServer=require('http').Server(app);
 const chatSockets=require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
+const path=require('path');
+if(env.name=='development'){
+    //telling app to use it
+    app.use(sassMiddleware({
+            /*
+            src - Source directory used to find .scss or .sass files.
+            dest - Destination directory used to output .css files. 
+            */ 
+        src:path.join(__dirname,env.asset_path,'scss'),
+        dest:path.join(__dirname,env.asset_path,'css'),
+        debug:true,
+        outputStyle:'extended',
+        prefix:'/css'
 
-
-//telling app to use it
-app.use(sassMiddleware({
-    /*
-    src - Source directory used to find .scss or .sass files.
-    dest - Destination directory used to output .css files. 
-    */ 
-   src:'./assets/scss',
-   dest:'./assets/css',
-   debug:true,
-   outputStyle:'extended',
-   prefix:'/css'
-
-}));
-
+    }));
+}
 
 
 app.use(express.urlencoded());
 app.use(cookieParser());
-app.use(express.static('assets'));
+app.use(express.static(env.asset_path));
 //making the uploads path available to browser..
 app.use('/uploads',express.static(__dirname+'/uploads'));
 app.use(expressLayouts);
@@ -62,7 +63,7 @@ app.set('views','./views');
 app.use(session({
     name:'codeial',
     // TODO change the secret before deployment in production mode
-    secret:'blahsomething',
+    secret:env.session_cookie_key,
     saveUninitialized:false,
     resave:false,
     cookie:{
