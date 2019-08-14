@@ -1,5 +1,6 @@
 const express =require('express');
 const env=require('./config/environment');
+const logger=require('morgan');
 const cookieParser=require('cookie-parser');
 const port=8000;
 const app=express();
@@ -28,6 +29,7 @@ const chatSockets=require('./config/chat_sockets').chatSockets(chatServer);
 chatServer.listen(5000);
 console.log('chat server is listening on port 5000');
 const path=require('path');
+//only use saas files to be executed  when in development mode 
 if(env.name=='development'){
     //telling app to use it
     app.use(sassMiddleware({
@@ -50,6 +52,9 @@ app.use(cookieParser());
 app.use(express.static(env.asset_path));
 //making the uploads path available to browser..
 app.use('/uploads',express.static(__dirname+'/uploads'));
+
+app.use(logger(env.morgan.mode,env.morgan.options));
+
 app.use(expressLayouts);
 //extraxt style and scripts from subpages into the layout
 app.set('layout extractStyles',true);
