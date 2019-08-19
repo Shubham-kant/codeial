@@ -4,6 +4,7 @@ const logger=require('morgan');
 const cookieParser=require('cookie-parser');
 const port=8000;
 const app=express();
+require('./config/view-helper')(app);
 // console.log(app.locals);
 const expressLayouts=require('express-ejs-layouts');
 //loaded the mongoose file here

@@ -7,10 +7,10 @@ const imagemin=require('gulp-imagemin');
 const del = require('del');
 
 //done is a callback function. It returns the result to a function you pass to it.
-//It's ust the name of the callback
+//It's just the name of the callback
 gulp.task('css',function(done){
     console.log('minifying css..');
-    gulp.src('./assets/**/.scss')
+    gulp.src('./assets/**/*.scss')
     
     //  gulp.src('./assets/sass/**/*.scss')
     .pipe(sass())
@@ -18,6 +18,7 @@ gulp.task('css',function(done){
     .pipe(gulp.dest('./assets/css'));
      gulp.src('./assets/**/*.css')
     .pipe(rev())
+    .pipe(cssnano())
     .pipe(gulp.dest('./public/assets'))
     .pipe(rev.manifest({
         cwd:'public',
@@ -58,7 +59,7 @@ gulp.task('clean:assets',function(done){
 
     done();
 });
-//calling all the above task
+//calling all the above tasks
 gulp.task('build',gulp.series('clean:assets','js','css','images'),function(done){
     console.log('building assets');
     done();
