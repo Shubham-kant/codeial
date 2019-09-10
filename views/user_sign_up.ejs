@@ -1,12 +1,25 @@
+<link rel="stylesheet" href="<%= assetPath('css/user_sign_up.css') %>">
+<div id="sign-up-page">
 <h1>SIGN UP</h1>
+<p id="google-sign-up">
+      <a href="/users/auth/google"><img src="/images/google.png" height="30" width="30"><span>Sign Up with Google</span></a>
+</p>
+
 <form action="/users/create" method="POST">
    <input name="name" type="text" placeholder="Your Name" required>
    <input name="email" type="email" placeholder="Your Email-id" required>
    <input name="password" type="password" placeholder="Password" required>
    <input name="confirm_password" type="password" placeholder="Confirm Password" required>
+   
    <input type="submit" value="Sign Up">
+   
 
 </form>
+
+
+
+<p id="already-account">
+   <span>Already have an account?</span> 
+   <a href="/users/sign-in">Log In</a>
 <p>
-   <a href="/users/auth/google">Google Sign In/Sign Up</a>
-</p>
+</div>
