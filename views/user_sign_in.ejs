@@ -1,22 +1,19 @@
 <link rel="stylesheet" href="<%= assetPath('css/user_sign_in.css') %>">
 <div id="sign-in-page">
-
-<h1>SIGN IN</h1>
-<p id="google-sign-in">
-    <a href="/users/auth/google"><img src="/images/google.png" height="30" width="30"><span> Continue with Google</span></a>
-</p>
 <form action="/users/create-session" method="POST">
-    
-    <input name="email" type="email" placeholder="Your Email-id" required>
-    <input name="password" type="password" placeholder="Password" required>
-    <input type="submit" value="Sign In">
-
- </form>
+    <h2>Sign in</h2>
+    <p id="google-sign-in">
+        <a href="/users/auth/google"><img src="/images/google.png" height="30" width="30"><span> Continue with Google</span></a>
+    </p>
+        <input name="email" type="email" placeholder="Your Email-id" required>
+        <input name="password" type="password" placeholder="Password" required>
+        <input type="submit" value="Sign In">
+    <p id="already-account">
+    <span>Don't have an account?</span> 
+    <a href="/users/sign-up">Sign Up</a>
+    <p>
+</form>
  
-<p id="already-account">
-   <span>Don't have an account?</span> 
-   <a href="/users/sign-up">Sign Up</a>
-<p>
 </div>
  
  
