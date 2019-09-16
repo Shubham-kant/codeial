@@ -48,28 +48,40 @@
     let newPostDom=function(post){
         //using backtick here
         return $(`
-        <li id="post-${ post._id }">
+        <li id="post-${ post._id }" class="post-code">
+        <section class="full-post">
          
-            <p>${ post.user.name }</p>
+            <p class="post-user-info">${ post.user.name }</p>
            
-            <p>${ post.content }
-            
-            <small>
-                            
-            <a class="toggle-like-button" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
-                0 Likes
-            </a>
-        
-    </small>
-        
+            <p class="post-content">${ post.content }
+                
             <!--checking if current logged in user id with the user id who created the post-->
 
             <a class="delete-post-button" href="/posts/destroy/${ post._id }">x</a>
             
-        
             </p>
+            
+            <small class="like-content">
+                            
+            <a class="toggle-like-button" toggle-like="false" data-likes="0" href="/likes/toggle/?id=${post._id}&type=Post">
+            <i class="fas fa-thumbs-up"></i>  0 likes  
+            
+            </a>
+        
+            </small>
+        </section>    
+        
+            
+        
+            
         
             <div class="post-comments">
+            <div class="post-comments-list">
+            <ul id="post-comments-${ post._id}">
+                <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->
+                
+            </ul>
+        </div>
              
          
         
@@ -82,12 +94,7 @@
                 </form>
         
            
-                <div class="post-comments-list">
-                    <ul id="post-comments-${ post._id}">
-                        <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->
-                        
-                    </ul>
-                </div>
+                
             </div>
         </li>`)
     
@@ -134,8 +141,22 @@
         });
     }
     let newLike=function(likeLink){
+     
         $(likeLink).click(function(e){
             e.preventDefault();
+            // if($(likeLink).attr('toggle-like')=='false'){
+            //     $(likeLink).attr('toggle-like','true');
+            //     $(likeLink).css({
+            //         color:"blue"
+            //     })
+            // }
+            // else{
+            //     $(likeLink).attr('toggle-like','false');
+            //     $(likeLink).css({
+            //         color:"#909090"
+            //     })
+            // }
+            
             $.ajax({
                 type:'post',
                 url:$(likeLink).prop('href'),
@@ -153,6 +174,20 @@
                     console.log(likeCount);
                     $(likeLink).attr('data-likes',likeCount);
                     $(likeLink).html(`${likeCount} likes`);
+                   
+                    if($(likeLink).attr('toggle-like')=='false'){
+                        $(likeLink).attr('toggle-like','true');
+                        $(likeLink).css({
+                            color:"blue"
+                        })
+                    }
+                    else{
+                        $(likeLink).attr('toggle-like','false');
+                        $(likeLink).css({
+                            color:"#909090"
+                        })
+                    }
+                    
 
 
 
@@ -161,6 +196,7 @@
 
                 }
             });
+            
         });
     }
     let iterate_Likes=function(){
@@ -172,4 +208,5 @@
     createPost();
     iterate_post();
     iterate_Likes();
+
 }

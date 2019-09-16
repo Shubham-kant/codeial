@@ -1,8 +1,27 @@
 #home-container {
   display: flex; }
   #home-container #feed-posts {
-    width: 70%;
+    width: 75%;
     padding: 10px; }
+    #home-container #feed-posts #new-post-form {
+      display: flex;
+      flex-direction: column; }
+      #home-container #feed-posts #new-post-form textarea {
+        outline: none;
+        height: 7rem;
+        width: 15rem;
+        font-size: 1rem;
+        border: 0.5px dashed black; }
+      #home-container #feed-posts #new-post-form input[type="submit"] {
+        background-color: #4834c9;
+        width: 15rem;
+        padding: 0.45rem;
+        color: white;
+        font-size: 1rem;
+        outline: none;
+        cursor: pointer;
+        border: none;
+        border-radius: 3%; }
   #home-container #user-friends {
     width: 30%;
     border-left: 1px solid lightgray;

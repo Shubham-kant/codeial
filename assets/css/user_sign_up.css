@@ -15,7 +15,8 @@ body {
       width: 15rem;
       background-color: white;
       border-style: outset;
-      margin-left: 1.5rem; }
+      margin-left: 1.5rem;
+      border-radius: 3%; }
       body #sign-up-page form #google-sign-up a {
         text-decoration: none;
         color: black;
@@ -31,7 +32,8 @@ body {
       width: 15rem;
       padding: 0.8rem;
       font-size: 0.7rem;
-      font-family: sans-serif; }
+      font-family: sans-serif;
+      outline-color: black; }
     body #sign-up-page form input[type="submit"] {
       background-color: #4834c9;
       color: white;
