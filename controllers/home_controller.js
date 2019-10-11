@@ -1,11 +1,11 @@
 const Post=require('../models/post');
 const User=require('../models/user');
+const Comment=require('../models/comment');
 
 
 //module.exports.action_name= function(req,res){}
 module.exports.home=async function(req,res){
    
-
    // Post.find({},function(err,posts){
    //     if(err){
    //        console.log('error in finding the posts');
@@ -39,11 +39,13 @@ module.exports.home=async function(req,res){
         //finding all the users to show them on screen
         //successful response of User.find() will be stored in 'users' variable
       let users=await User.find({});
+      
          
          return res.render('home',{
          title:'home',
          posts:posts,
          all_users:users
+         
 
       }); 
    }

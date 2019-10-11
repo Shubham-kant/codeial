@@ -1,4 +1,4 @@
-.post-code{
+.post-container{
     border: 0.5px solid lightgray;
     list-style: none;
     margin-bottom: 0.5rem;
@@ -31,7 +31,7 @@
             }
 
         }
-        .like-content{
+        .post-like-content{
             display: flex;
             justify-content: space-between;
             a{

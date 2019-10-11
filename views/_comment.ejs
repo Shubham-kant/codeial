@@ -1,32 +1,30 @@
+<link rel="stylesheet" href="<%= assetPath('css/comment.css') %>">
+
 <!--  the code for comments will be here -->
 <!-- it is a partial  -->
-<li id="comment-<%= comment._id %>">
-    <p>
-        <small>
-            
-            <%= comment.user.name %>
-        </small>
-        <div>
-            <%= comment.content %>
-           
-            
+<li id="comment-<%= comment._id %>" class="comment-container">
+    <p class="comment-user-info">
+        <%= comment.user.name %> 
+    </p>
+        <p class="comment-content">
+            <div class="content">
+              <%= comment.content %>
+            </div>
+        <div class="delete-button">
+            <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){%>
+                <a class="delete-comment-button" href="/comments/destroy/<%= comment._id %>">x</a>
+  
+           <% } %>
         </div>
-        <small>
+    </p>
+    <small class="comment-like-content">
         <% if(locals.user){ %>
             <a class="toggle-like-button" data-likes="<%= comment.likes.length %>" href="/likes/toggle/?id=<%=comment._id%>&type=Comment">
+                <i class="fas fa-thumbs-up"></i>
                 <%= comment.likes.length %> likes
             </a>
         <% }else{ %>
             <%= comment.likes.length %> likes
         <% } %>
-        </small> 
-        <div>
-            <% if(locals.user && ((locals.user.id == comment.user.id )||( locals.user.id == post.user.id))){ %>
-                <a class="delete-comment-button" href="/comments/destroy/<%= comment._id %>">x</a>
-  
-                
-           <% } %>
-
-        </div>
-    </p>
+    </small> 
     </li>

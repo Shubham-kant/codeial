@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="<%= assetPath('css/post.css') %>">
 <!-- it is a partial  -->
 <!--  the code for posts will be here -->
-<li id="post-<%= post._id %>" class="post-code">
+<li id="post-<%= post._id %>" class="post-container">
     <!-- here user is the field in post schema and 
     name is one of its property.  -->
     <!-- here post is the iterating variable -->
@@ -15,7 +15,7 @@
             
             <%  } %>
     </p>
-    <small class="like-content">
+    <small class="post-like-content">
     <% if(locals.user){ %>
         <a class="toggle-like-button"  data-likes="<%= post.likes.length %>"  href="/likes/toggle/?id=<%= post._id %>&type=Post">
             <i class="fas fa-thumbs-up"></i>
@@ -33,7 +33,7 @@
     
 
     <div class="post-comments">
-        
+
         <div class="post-comments-list">
             <ul id="post-comments-<%= post._id%>">
                 <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->

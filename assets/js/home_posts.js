@@ -76,12 +76,12 @@
             
         
             <div class="post-comments">
-            <div class="post-comments-list">
-            <ul id="post-comments-${ post._id}">
-                <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->
+                <div class="post-comments-list">
+                    <ul id="post-comments-${ post._id}">
+                        <!-- here 'post' in 'post.comment' is the iterating  varible in the above for loop-->
                 
-            </ul>
-        </div>
+                    </ul>
+                </div>
              
          
         
