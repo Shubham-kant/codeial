@@ -26,3 +26,17 @@
     width: 30%;
     border-left: 1px solid lightgray;
     padding: 10px; }
+    #home-container #user-friends #main-heading {
+      font-family: sans-serif; }
+    #home-container #user-friends a {
+      text-decoration: none;
+      margin-top: 1rem;
+      padding: 0.3rem;
+      display: flex;
+      flex-direction: row; }
+      #home-container #user-friends a img::before {
+        border-radius: 50%; }
+      #home-container #user-friends a #friend-name {
+        color: black; }
+    #home-container #user-friends a:hover {
+      background-color: #F2F3F5; }

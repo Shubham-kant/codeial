@@ -27,12 +27,14 @@
  </div>
  </section>
  <section id="user-friends">
-   <h4>Friends</h4>
+   <h4 id="main-heading">Friends</h4>
    <% for(u of all_users){ %>
     <a href="/users/profile/<%= u._id%>">
          <!--displaying all the users  -->
-        <div>
-            <%= u.name%>
+        
+        <img src="<%= u.avatar %>" alt="<%= u.name %>" width="30" height="30">
+        <div id="friend-name">
+            <%= u.name %>
         </div>
    
     </a>

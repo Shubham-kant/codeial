@@ -43,5 +43,29 @@
         border-left: 1px solid lightgray;
         padding: 10px;
         // height: 100%;
+        #main-heading{
+            font-family:sans-serif;
+            
+
+
+        }
+        a{
+            text-decoration: none;
+            margin-top:1rem;
+            padding:0.3rem;
+            display: flex;
+            flex-direction: row;
+            img::before{
+                border-radius:50%;
+                
+            }
+            #friend-name{
+                color:black;
+                
+            }
+        }
+        a:hover{
+            background-color: #F2F3F5;;
+        }
     }
 }
