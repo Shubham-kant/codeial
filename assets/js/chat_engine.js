@@ -123,6 +123,16 @@ class chatEngine{
             
 
         })
+    
+        
+       
+        $('.open-button').click(function(){
+            document.getElementById("user-chat-box").style.display = "block";
+        });
+        $('.btn-cancel').click(function(){
+            document.getElementById("user-chat-box").style.display = "none";
+        });
+
         
 
     }

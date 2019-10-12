@@ -1,4 +1,17 @@
+.open-button {
+  background-color: #555;
+  color: white;
+  padding: 16px 20px;
+  border: none;
+  cursor: pointer;
+  opacity: 0.8;
+  position: fixed;
+  bottom: 15px;
+  right: 28px;
+  width: 280px; }
+
 #user-chat-box {
+  display: none;
   position: fixed;
   bottom: 10px;
   right: 10px;
@@ -58,3 +71,14 @@
       cursor: pointer;
       outline: none;
       font-family: sans-serif; }
+  #user-chat-box .btn-cancel {
+    display: block;
+    color: black;
+    height: 22px;
+    width: 22px;
+    cursor: pointer;
+    position: fixed;
+    right: 320px;
+    bottom: 368px; }
+    #user-chat-box .btn-cancel i {
+      font-size: 1rem; }
