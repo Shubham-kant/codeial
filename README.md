@@ -14,3 +14,4 @@ It is a social media web app in which you can chat with your friends,comment on 
 * Then cd codeial
 * npm install
 * npm start
+* Visit your app at http://localhost:8000.
