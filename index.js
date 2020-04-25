@@ -2,7 +2,7 @@ const express =require('express');
 const env=require('./config/environment');
 const logger=require('morgan');
 const cookieParser=require('cookie-parser');
-const port=8000;
+const port=process.env.PORT || 8000;
 const app=express();
 require('./config/view-helper')(app);
 // console.log(app.locals);
