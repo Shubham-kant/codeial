@@ -5,9 +5,9 @@ It is a social media website which offers many cool features like a chat engine,
 
 ## Screenshots
 
-![Sign Up Page](uploads/codeial_screenshots/sign_up.png "Sign Up Page")
-![Chat Engine](uploads/codeial_screenshots/chat_engine.png "Chat Engine")
-![Profile Page](uploads/codeial_screenshots/profile_page.png "Profile age")
+![Sign Up Page](uploads/codeial_screenshots/sign_up.PNG "Sign Up Page")
+![Chat Engine](uploads/codeial_screenshots/chat_engine.PNG "Chat Engine")
+![Profile Page](uploads/codeial_screenshots/profile_page.PNG "Profile age")
 
 ## Technologies Stack:
 
