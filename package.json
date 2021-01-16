@@ -4,7 +4,7 @@
   "description": "my all socia media web app",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prod_start": "SET NODE_ENV=production&&nodemon index.js"
   },
@@ -45,7 +45,7 @@
     "gulp": "^4.0.2"
   },
   "engines": {
-    "node": "10",
-    "npm": "6"
+    "node": "11.10.1",
+    "npm": "6.14.5"
   }
 }
