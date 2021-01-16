@@ -23,12 +23,12 @@ const development={
             secure: false,
             auth: {
                 user: 'starktony3600@gmail.com',
-                pass: env_dev.pass
+                pass: process.env.CODEIAL_GMAIL_PASSWORD || env_dev.pass
             }
     },
-    google_client_id: env_dev.google_client_id,
-    google_client_secret: env_dev.google_client_secret,
-    google_call_back_url: env_dev.google_call_back_url,
+    google_client_id: env_dev.google_client_id || process.env.CODEIAL_GOOGLE_CLIENT_ID,
+    google_client_secret: env_dev.google_client_secret || process.env.CODEIAL_GOOGLE_CLIENT_SECRET,
+    google_call_back_url: env_dev.google_call_back_url || process.env.CODEIAL_GOOGLE_CALLBACK_URL,
     jwt_secret: 'codeial',
     //dev means development mode
     morgan:{
